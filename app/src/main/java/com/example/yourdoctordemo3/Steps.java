@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -12,6 +13,8 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -73,15 +76,8 @@ public class Steps extends WearableActivity implements SensorEventListener {
         SimpleDateFormat f = new SimpleDateFormat(" EEEE");
         date = f.format(new Date());
 
-        if(flagDate != date){//gia na einai evdomadad mporo na valw metriti molis ftanei 7 na kanei clear to layout
-            //create history
-            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.History);
-            TextView textView = new TextView(Steps.this);
-            textView.setText(daysteps);
-            textView.setBackground(ContextCompat.getDrawable(Steps.this,R.drawable.gardient_list));
-            linearLayout.addView(textView);
 
-        }
+
 
         steps = (TextView) findViewById(R.id.stepscount);
         distance = (TextView) findViewById(R.id.distance);
@@ -148,6 +144,19 @@ public class Steps extends WearableActivity implements SensorEventListener {
             editor.putInt("steps",stepcount);
             editor.putString("date",date);
             editor.apply();
+            if(sp != null && sp.getString("date", null) != null && !sp.getString("date", null).equals(date)){//gia na einai evdomadad mporo na valw metriti timer  na kanei clear to layout
+                //create history
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.History);
+                TextView textView = new TextView(Steps.this);
+                textView.setText(date + ":"+ stepcount);
+                textView.setTextSize(15);
+                textView.setTextColor(Color.parseColor("#bdbdbd"));
+                textView.setGravity(Gravity.CENTER);
+                textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                textView.setBackground(ContextCompat.getDrawable(Steps.this,R.drawable.gardient_list));
+                linearLayout.addView(textView);
+
+            }
 
             dailySteps.add(""+stepcount);
             FireStoreHelper.insertData("Steps", "Today", dailySteps, "ID");
