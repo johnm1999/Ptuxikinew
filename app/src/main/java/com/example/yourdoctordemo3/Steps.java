@@ -51,7 +51,7 @@ public class Steps extends WearableActivity implements SensorEventListener {
     private boolean isCounterSensorPresent;
     private String date;
     int stepcount;
-    private int clearWeek = 0;
+    private String str;
 
     private TextView weeklystep;
     private TextView dayofhistory;
@@ -75,6 +75,13 @@ public class Steps extends WearableActivity implements SensorEventListener {
         SimpleDateFormat simpleformat = new SimpleDateFormat("dd/MMMM/yyyy hh:mm:s");
         SimpleDateFormat f = new SimpleDateFormat(" EEEE");
         date = f.format(new Date());
+
+        //istoriko
+        Date fulldate = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        str = formatter.format(fulldate);
+
+
 
 
 
@@ -144,11 +151,11 @@ public class Steps extends WearableActivity implements SensorEventListener {
             editor.putInt("steps",stepcount);
             editor.putString("date",date);
             editor.apply();
-            if(sp != null && sp.getString("date", null) != null && !sp.getString("date", null).equals(date)){//gia na einai evdomadad mporo na valw metriti timer  na kanei clear to layout
+            if(sp != null && sp.getString("date", null) != null && !sp.getString("date", null).equals(date)){//Prospathisa na to kanw evodomadidaio alla den mporesa
                 //create history
                 LinearLayout linearLayout = (LinearLayout) findViewById(R.id.History);
                 TextView textView = new TextView(Steps.this);
-                textView.setText(date + ":"+ stepcount);
+                textView.setText(str + ":"+ stepcount);
                 textView.setTextSize(15);
                 textView.setTextColor(Color.parseColor("#bdbdbd"));
                 textView.setGravity(Gravity.CENTER);
