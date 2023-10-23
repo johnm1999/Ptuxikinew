@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">YourDoctor(demo 3)</string>
+    <string name="title_activity_heart__rate">Heart_Rate</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_steps">Steps</string>
+    <string name="title_activity_history">History</string>
+    <string name="title_activity_notifications">Notifications</string>
+    <string name="title_activity_sleep">Sleep</string>
+    <string name="startHeartRateMeasure">Please wait...</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+</resources>

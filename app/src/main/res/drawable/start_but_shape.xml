@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient android:startColor="#e6f7ff"/>
+            <gradient android:endColor="#b3d9ff"/>
+            <corners android:radius="1000dp" /><!-- round corners for imagebutton-->
+        </shape>
+    </item>
+</selector>
