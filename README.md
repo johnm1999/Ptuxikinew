@@ -1,2 +1,4 @@
 # GoogleFitApp
-Acadia project 
+Πτυχιακή Εγασία 
+Ανάπτυξη εφαρμογής Υγείας σε OS
+
